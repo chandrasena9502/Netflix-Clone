@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Netflix Signup</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/login.css' %}" />
+    <style>
+        body{
+            background-image: url('{% static "img/netflix1.png" %}');
+            background-size: cover;
+        }
+        h5{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image">
+        <div class="signup-container">
+            <h1>Sign Up</h1>
+            <h2>Unlimited movies, TV shows, and more.</h2>
+            <h3>Watch anywhere. Cancel anytime.</h3>
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <h5>{{ message }}</h5>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Email address" required />
+                <input type="text" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <input type="password" name="password2" placeholder="Repeat Password" required />
+                <button type="submit" class="signup-btn">Get Started ></button>
+            </form>
+
+            <div class="help-text">
+                Already have an account? <a href="{% url 'app:login' %}">Sign in now</a>.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
